@@ -83,6 +83,9 @@ const AceCoinPayProvider = ({
           .replace(/-/g, "");
         setLastEightDigits(extractedLastEightDigits);
 
+        //disable input once maximum characters are reached
+        formattedCardNumber.length === maxLength && setEdit(false);
+
         //needed to setUsername on card number completion
         if (formattedCardNumber.length <= maxLength) {
           setUsername(randomName);
