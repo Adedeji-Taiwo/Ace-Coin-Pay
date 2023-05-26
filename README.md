@@ -24,8 +24,7 @@ Below are the third party libraries used in this project:
 | React  |  `react` | A JavaScript library for building user interfaces. |
 | Typescript |  `typescript` | A superset of JavaScript that adds static type definitions. |
 | React-Countdown | `react-countdown`  | A React library used for implementing countdown timers in React applications. |
-
-| TailwindCSS | `tailwindcss`  | A utility-first CSS framework for rapidly building custom designs |
+| TailwindCSS | `tailwindcss`  | A utility-first CSS framework for rapidly building custom designs. |
 | React Hot Toast | ` react-hot-toast`  | A customizable toast notification library for React applications.|
 
 
