@@ -69,7 +69,7 @@ const Form = () => {
                 formData.cardNumber.length === maxLength &&
                 !edit &&
                 "bg-[#f9fafb]"
-              } lg:px-16 px-14`}
+              } lg:px-16 px-14 placeholder:font-medium`}
               disabled={
                 formData.cardNumber.length === maxLength && !edit
               }

@@ -14,6 +14,7 @@ import {
   randomName,
 } from "../functions/functions";
 
+
 export interface AceCoinPayContextType {
   showForm: boolean;
   setShowForm: React.Dispatch<React.SetStateAction<boolean>>;
@@ -78,17 +79,19 @@ const AceCoinPayProvider = ({
 
          // needed for display on card UI
         const extractedLastEightDigits = formattedCardNumber
+          .slice(-9)
           .replace(/-/g, "");
         setLastEightDigits(extractedLastEightDigits);
 
         //needed to setUsername on card number completion
         if (formattedCardNumber.length <= maxLength) {
           setUsername(randomName);
+          setFormData((prevFormData) => ({
+            ...prevFormData,
+            [name]: formattedCardNumber,
+          }));
         }
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          [name]: formattedCardNumber,
-        }));
+       
       } else if (name === "cvv") {
         const formattedCvv = value.replace(/[^0-9]/g, "").slice(0, 3); // Allow only digits and limit to 3 characters
         setFormData((prevFormData) => ({
@@ -146,7 +149,7 @@ const AceCoinPayProvider = ({
         }));
       }
     },
-    []
+    [edit]
   );
 
   //submit function for form data
