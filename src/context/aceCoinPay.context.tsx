@@ -152,7 +152,7 @@ const AceCoinPayProvider = ({
         }));
       }
     },
-    [edit]
+    []
   );
 
   //submit function for form data
@@ -186,7 +186,7 @@ const AceCoinPayProvider = ({
       //notify successful completion
       toast.success(
         <span className="text-blackish xl:text-base lg:text-sm text-xs">
-          Card Added Successfully!
+          Payment Successful!
         </span>,
         { duration: 4000 }
       );
