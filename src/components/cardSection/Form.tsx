@@ -60,6 +60,7 @@ const Form = () => {
             <FormInput
               type="text"
               inputMode="numeric"
+              inputType="cardNumber"
               placeholder=""
               name="cardNumber"
               value={formData.cardNumber}
