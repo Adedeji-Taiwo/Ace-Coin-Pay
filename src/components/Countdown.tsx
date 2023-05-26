@@ -28,6 +28,7 @@ const CountdownTimer = () => {
       const formattedSeconds = String(seconds).padStart(2, "0");
       const totalSeconds = minutes * 60 + seconds;
       const isTwentySecondsRemaining = totalSeconds <= 20;
+      console.log(isTwentySecondsRemaining)
 
       return (
         <div className="flex items-center justify-end w-full">
@@ -38,7 +39,7 @@ const CountdownTimer = () => {
                 isTwentySecondsRemaining
                   ? "text-red-400"
                   : "text-white"
-              } bg-secondary text-white lg:text-xl md:text-base text-sm lg:h-10 lg:w-7 h-8 w-6 font-medium inline-flex items-center justify-center rounded ml-1`}
+              } bg-secondary lg:text-xl md:text-base text-sm lg:h-10 lg:w-7 h-8 w-6 font-medium inline-flex items-center justify-center rounded ml-1`}
             >
               {digit}
             </span>
@@ -53,7 +54,7 @@ const CountdownTimer = () => {
                 isTwentySecondsRemaining
                   ? "text-red-400"
                   : "text-white"
-              } bg-secondary text-white lg:text-xl md:text-base text-sm lg:h-10 lg:w-7 h-8 w-6 font-medium inline-flex items-center justify-center rounded ml-1`}
+              } bg-secondary lg:text-xl md:text-base text-sm lg:h-10 lg:w-7 h-8 w-6 font-medium inline-flex items-center justify-center rounded ml-1`}
             >
               {digit}
             </span>

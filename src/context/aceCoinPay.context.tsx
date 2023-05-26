@@ -98,7 +98,7 @@ const AceCoinPayProvider = ({
       } else if (name === "password") {
         const formattedPassword = value
           .replace(/[^0-9]/g, "")
-          .slice(0, 4); // Allow only digits and limit to 4 characters
+          .slice(0, 6); // Allow only digits and limit to 6 characters
         setFormData((prevFormData) => ({
           ...prevFormData,
           [name]: formattedPassword,

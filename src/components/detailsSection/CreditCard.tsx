@@ -12,7 +12,7 @@ const CreditCard = () => {
   ) as AceCoinPayContextType;
 
   return (
-    <div className="relative flex flex-col items-start lg:gap-28 gap-32 font-poppins bg-gradient shadow-custom overflow-hidden md:w-[230px] w-[70%] h-80 lg:px-6 lg:py-8 px-4 py-6 rounded-3xl z-20">
+    <div className="relative flex flex-col items-start lg:gap-24 gap-28 font-poppins bg-gradient shadow-custom overflow-hidden md:w-[230px] w-[70%] h-[300px] lg:px-6 lg:py-8 px-4 py-6 rounded-3xl z-20">
       <div className="relative flex items-center justify-between w-full">
         <img
           src={chip}
