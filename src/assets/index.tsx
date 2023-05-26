@@ -1,0 +1,11 @@
+export {default as editPencil} from './edit-pencil.svg';
+export {default as mastercard} from './mastercard-2.svg';
+export {default as mastercardLogo} from './mc_symbol.svg';
+export {default as visa} from './visa.svg';
+export {default as verve} from './verve.svg';
+export {default as verified} from './verified-badge.svg';
+export {default as dots} from './dots.svg'
+export {default as chip} from './chip.png'
+export {default as wifi} from './wifi.png'
+export {default as apple} from './apple.svg'
+export {default as slip} from './slip.png'
