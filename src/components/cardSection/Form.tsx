@@ -61,7 +61,7 @@ const Form = () => {
               type="text"
               inputMode="numeric"
               inputType="cardNumber"
-              placeholder=""
+              placeholder="5523 - 8545 - 3905 - 2617"
               name="cardNumber"
               value={formData.cardNumber}
               onChange={handleInputChange}
@@ -69,7 +69,7 @@ const Form = () => {
                 formData.cardNumber.length === maxLength &&
                 !edit &&
                 "bg-[#f9fafb]"
-              } lg:px-14 px-12`}
+              } lg:px-16 px-14`}
               disabled={
                 formData.cardNumber.length === maxLength && !edit
               }
