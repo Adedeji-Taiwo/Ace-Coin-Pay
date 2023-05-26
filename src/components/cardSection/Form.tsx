@@ -61,7 +61,7 @@ const Form = () => {
               type="text"
               inputMode="numeric"
               inputType="cardNumber"
-              placeholder="5523 - 8545 - 3905 - 2617"
+              placeholder="5523   -   8545   -   3905   -   2617"
               name="cardNumber"
               value={formData.cardNumber}
               onChange={handleInputChange}
@@ -69,7 +69,7 @@ const Form = () => {
                 formData.cardNumber.length === maxLength &&
                 !edit &&
                 "bg-[#f9fafb]"
-              } lg:px-16 px-14 placeholder:font-medium`}
+              } lg:px-16 px-14`}
               disabled={
                 formData.cardNumber.length === maxLength && !edit
               }
@@ -115,8 +115,8 @@ const Form = () => {
               name="cvv"
               value={formData.cvv}
               onChange={handleInputChange}
-              placeholder=""
-              className=""
+              placeholder="423"
+              className="text-center"
             />
           </div>
         </label>
@@ -139,8 +139,8 @@ const Form = () => {
               name="month"
               value={formData.month}
               onChange={handleInputChange}
-              placeholder=""
-              className="col-span-1"
+              placeholder="03"
+              className="col-span-1 text-center"
             />
             <span className="font-bold lg:text-base text-secondary">
               /
@@ -151,8 +151,8 @@ const Form = () => {
               name="year"
               value={formData.year}
               onChange={handleInputChange}
-              placeholder=""
-              className="col-span-1"
+              placeholder="25"
+              className="col-span-1 text-center"
             />
           </div>
         </label>
@@ -179,6 +179,7 @@ const Form = () => {
             <FormInput
               type="password"
               inputMode="numeric"
+              inputType="password"
               name="password"
               value={formData.password}
               onChange={handleInputChange}

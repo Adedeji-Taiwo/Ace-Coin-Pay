@@ -43,9 +43,9 @@ const CheckoutDetails = () => {
           <span className="opacity-90">You have to Pay</span>
           <div className="flex items-end gap-2">
             <h1 className="font-bold lg:text-xl text-lg">
-              549<sub>.99</sub>
+              549<sub className="relative -bottom-[1px]">.99</sub>
             </h1>
-            <span className="opacity-90">USD</span>
+            <span className="opacity-90 relative bottom-[2px]">USD</span>
           </div>
         </div>
         <img

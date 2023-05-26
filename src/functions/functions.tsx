@@ -15,14 +15,14 @@ export const getCardType = (number: string): string => {
 
 //Needed to add "-" after 4 numbers
 export const cardNumberFormatter = (value: string) => {
-  const formattedInput = value.replace(/[^0-9]/g, "").slice(0, 19); // Remove non-numeric characters and allow up to 19 character.
+  const formattedInput = value.replace(/[^0-9]/g, "").slice(0, 37); // Remove non-numeric characters and allow up to 37 character.
   const segments = [];
 
   for (let i = 0; i < formattedInput.length; i += 4) {
     segments.push(formattedInput.substring(i, i + 4));
   }
 
-  return segments.join("-");
+  return segments.join("   -   "); //there are 3 whitespace at the rears of the hyphen when added to it makes 7 which is 7x3 = 21 + 16 digits = 37
 };
 
 //Needed to be displayed as dummy for card holder

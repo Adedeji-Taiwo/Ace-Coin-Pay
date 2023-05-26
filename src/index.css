@@ -5,3 +5,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/*Hide the password reveal button in MS EDGE*/
+::-ms-reveal {
+    display: none;
+}

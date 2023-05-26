@@ -24,8 +24,8 @@ export interface AceCoinPayContextType {
   setCountdownKey: React.Dispatch<React.SetStateAction<number>>;
   username: string;
   setUsername: React.Dispatch<React.SetStateAction<string>>;
-  lastEightDigits: string;
-  setLastEightDigits: React.Dispatch<React.SetStateAction<string>>;
+  lastFourDigits: string;
+  setLastFourDigits: React.Dispatch<React.SetStateAction<string>>;
   formData: CreditCardFormData;
   setFormData: React.Dispatch<
     React.SetStateAction<CreditCardFormData>
@@ -57,10 +57,10 @@ const AceCoinPayProvider = ({
   );
   const [edit, setEdit] = useState<boolean>(false); //enable input interaction
   const [countdownKey, setCountdownKey] = useState<number>(0);
-  const maxLength = 19; // Maximum length of the formatted card number (with dashes)
+  const maxLength = 37; // Maximum length of the formatted card number (with dashes)
   const [formData, setFormData] =
     useState<CreditCardFormData>(initialState);
-  const [lastEightDigits, setLastEightDigits] = useState<string>("");
+  const [lastFourDigits, setLastFourDigits] = useState<string>("");
 
   // Update the key to restart the countdown
   useEffect(() => {
@@ -78,10 +78,10 @@ const AceCoinPayProvider = ({
         const formattedCardNumber = cardNumberFormatter(value);
 
          // needed for display on card UI
-        const extractedLastEightDigits = formattedCardNumber
-          .slice(-9)
+        const extractedLastFourDigits = formattedCardNumber
+          //.slice(-4)
           .replace(/-/g, "");
-        setLastEightDigits(extractedLastEightDigits);
+        setLastFourDigits(extractedLastFourDigits);
 
         //disable input once maximum characters are reached
         formattedCardNumber.length === maxLength && setEdit(false);
@@ -181,7 +181,7 @@ const AceCoinPayProvider = ({
 
       // Reset the form data to initial values
       setFormData(initialState);
-      setLastEightDigits("");
+      setLastFourDigits("");
 
       //notify successful completion
       toast.success(
@@ -215,8 +215,8 @@ const AceCoinPayProvider = ({
       maxLength,
       username,
       setUsername,
-      lastEightDigits,
-      setLastEightDigits,
+      lastFourDigits,
+      setLastFourDigits,
     }),
     [
       showForm,
@@ -232,8 +232,8 @@ const AceCoinPayProvider = ({
       maxLength,
       username,
       setUsername,
-      lastEightDigits,
-      setLastEightDigits,
+      lastFourDigits,
+      setLastFourDigits,
     ]
   );
 

@@ -11,7 +11,7 @@ const CloseBtn = () => {
 
   return (
     <div
-      className="absolute z-10 top-0 right-0 lg:p-3 p-2 lg:text-xl text-lg cursor-pointer bg-[#f3f5f6]"
+      className="absolute z-10 top-0 right-0 lg:p-3 p-2 lg:text-xl text-lg cursor-pointer bg-[#f3f5f6] hover:bg-[#edeff8]"
       onClick={() => setShowForm(false)}
     >
       <svg

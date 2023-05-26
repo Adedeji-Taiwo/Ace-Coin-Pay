@@ -7,12 +7,13 @@ import { chip, wifi } from "../../assets";
 import { getCardType } from "../../functions/functions";
 
 const CreditCard = () => {
-  const { formData, username, lastEightDigits } = useContext(
+  const { formData, username, lastFourDigits } = useContext(
     AceCoinPayContext
   ) as AceCoinPayContextType;
 
+  
   return (
-    <div className="relative flex flex-col items-start lg:gap-24 gap-28 font-poppins bg-gradient shadow-custom overflow-hidden md:w-[230px] w-[70%] h-[300px] lg:px-6 lg:py-8 px-4 py-6 rounded-3xl z-20">
+    <div className="relative flex flex-col items-start lg:gap-24 gap-28 font-poppins bg-gradient shadow-custom overflow-hidden md:w-[230px] w-[70%] h-[300px] p-6 rounded-3xl z-20">
       <div className="relative flex items-center justify-between w-full">
         <img
           src={chip}
@@ -31,19 +32,19 @@ const CreditCard = () => {
             {username}
           </span>
           <div className="flex items-center lg:gap-4 gap-3">
-            {lastEightDigits.length ? (
+            {lastFourDigits.length ? (
               <>
+                 <div className="flex items-center justify-start gap-1">
+                  <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                  <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                  <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                  <span className="w-2 h-2 rounded-full bg-secondary"></span>
+                </div>
                 <span className="font-semibold lg:text-xl text-lg">
-                  {lastEightDigits.length >= 1 && lastEightDigits[0]}
-                  {lastEightDigits.length >= 2 && lastEightDigits[1]}
-                  {lastEightDigits.length >= 3 && lastEightDigits[2]}
-                  {lastEightDigits.length >= 4 && lastEightDigits[3]}
-                </span>
-                <span className="font-semibold lg:text-xl text-lg">
-                  {lastEightDigits.length >= 5 && lastEightDigits[4]}
-                  {lastEightDigits.length >= 6 && lastEightDigits[5]}
-                  {lastEightDigits.length >= 7 && lastEightDigits[6]}
-                  {lastEightDigits.length >= 8 && lastEightDigits[7]}
+                  {lastFourDigits.length >= 31 && lastFourDigits[30]}
+                  {lastFourDigits.length >= 32 && lastFourDigits[31]}
+                  {lastFourDigits.length >= 33 && lastFourDigits[32]}
+                  {lastFourDigits.length >= 34 && lastFourDigits[33]}
                 </span>
               </>
             ) : (
