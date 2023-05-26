@@ -28,7 +28,6 @@ const CountdownTimer = () => {
       const formattedSeconds = String(seconds).padStart(2, "0");
       const totalSeconds = minutes * 60 + seconds;
       const isTwentySecondsRemaining = totalSeconds <= 20;
-      console.log(isTwentySecondsRemaining)
 
       return (
         <div className="flex items-center justify-end w-full">
