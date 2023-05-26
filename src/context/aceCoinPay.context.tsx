@@ -184,6 +184,12 @@ const AceCoinPayProvider = ({
         </span>,
         { duration: 4000 }
       );
+
+      //dismiss toast and close form
+      setTimeout(() => {
+        toast.dismiss()
+        setShowForm(false);
+      }, 4000);
     },
     [formData]
   );

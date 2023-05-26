@@ -8,11 +8,11 @@ This project was generated with Vite version 4.3.2.
 
 
 ## Screenshot
-![Screenshot](https://github.com/Adedeji-Taiwo/Metcast/blob/main/src/assets/screenshots/Metcast.png)
+![Screenshot](https://github.com/Adedeji-Taiwo/Ace-Coin-Pay/blob/main/src/assets/screenshot.png)
 
 
 ## Link
-- Live link: https://metcasting.netlify.app/
+- Live link: https://acecoinpayment.netlify.app/
 
 
 ## Third Party Libraries used.
