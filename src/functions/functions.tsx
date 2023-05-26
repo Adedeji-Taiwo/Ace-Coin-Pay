@@ -15,7 +15,7 @@ export const getCardType = (number: string): string => {
 
 //Needed to add "-" after 4 numbers
 export const cardNumberFormatter = (value: string) => {
-  const formattedInput = value.replace(/[^0-9]/g, ""); // Remove non-numeric characters
+  const formattedInput = value.replace(/[^0-9]/g, "").slice(0, 19); // Remove non-numeric characters and allow up to 19 character.
   const segments = [];
 
   for (let i = 0; i < formattedInput.length; i += 4) {

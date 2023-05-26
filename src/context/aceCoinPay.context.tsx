@@ -76,10 +76,10 @@ const AceCoinPayProvider = ({
       if (name === "cardNumber") {
         const formattedCardNumber = cardNumberFormatter(value);
 
+         // needed for display on card UI
         const extractedLastEightDigits = formattedCardNumber
-          .slice(-9)
           .replace(/-/g, "");
-        setLastEightDigits(extractedLastEightDigits); // needed for display on card UI
+        setLastEightDigits(extractedLastEightDigits);
 
         //needed to setUsername on card number completion
         if (formattedCardNumber.length <= maxLength) {
