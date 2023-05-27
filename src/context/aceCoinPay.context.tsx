@@ -1,18 +1,7 @@
-import {
-  createContext,
-  useState,
-  useEffect,
-  useMemo,
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-} from "react";
+import { createContext, useState, useEffect, useMemo, ChangeEvent, FormEvent, useCallback} from "react";
 import { CreditCardFormData } from "../constants/types";
 import { toast } from "react-hot-toast";
-import {
-  cardNumberFormatter,
-  randomName,
-} from "../functions/functions";
+import { cardNumberFormatter, randomNames, characterNumberSpecifier} from "../functions/functions";
 
 
 export interface AceCoinPayContextType {
@@ -27,9 +16,7 @@ export interface AceCoinPayContextType {
   lastFourDigits: string;
   setLastFourDigits: React.Dispatch<React.SetStateAction<string>>;
   formData: CreditCardFormData;
-  setFormData: React.Dispatch<
-    React.SetStateAction<CreditCardFormData>
-  >;
+  setFormData: React.Dispatch<React.SetStateAction<CreditCardFormData>>;
   handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: (event: FormEvent) => void;
   maxLength: number;
@@ -46,21 +33,16 @@ const initialState = {
   year: "",
 };
 
-const AceCoinPayProvider = ({
-  children,
-}: {
-  children: React.ReactNode;
-}) => {
+const AceCoinPayProvider = ({ children }: { children: React.ReactNode }) => {
   const [showForm, setShowForm] = useState<boolean>(false);
-  const [username, setUsername] = useState<string>(
-    "jonathan micheal"
-  );
-  const [edit, setEdit] = useState<boolean>(false); //enable input interaction
+  const [username, setUsername] = useState<string>("jonathan micheal");
+  const [edit, setEdit] = useState<boolean>(false); //enable card number input interaction
   const [countdownKey, setCountdownKey] = useState<number>(0);
-  const maxLength = 37; // Maximum length of the formatted card number (with dashes)
-  const [formData, setFormData] =
-    useState<CreditCardFormData>(initialState);
+  const maxLength = 37;       // Maximum length of the formatted card number (with dashes)
+  const [formData, setFormData] = useState<CreditCardFormData>(initialState);
   const [lastFourDigits, setLastFourDigits] = useState<string>("");
+
+
 
   // Update the key to restart the countdown
   useEffect(() => {
@@ -69,136 +51,123 @@ const AceCoinPayProvider = ({
     }
   }, [showForm]);
 
-  //handle change in input event
-  const handleInputChange = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      const { name, value } = event.target;
 
-      if (name === "cardNumber") {
-        const formattedCardNumber = cardNumberFormatter(value);
 
-         // needed for display on card UI
-        const extractedLastFourDigits = formattedCardNumber
-          //.slice(-4)
-          .replace(/-/g, "");
-        setLastFourDigits(extractedLastFourDigits);
+    //handle change in input 
+  const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
 
-        //disable input once maximum characters are reached
-        formattedCardNumber.length === maxLength && setEdit(false);
+    if (name === "cardNumber") {
+      const formattedCardNumber = cardNumberFormatter(value);
+      const extractedLastFourDigits = formattedCardNumber.replace(/-/g, "");  // needed for display on card UI
+      setLastFourDigits(extractedLastFourDigits);
+      
+      //disable input once maximum characters are reached and show name on card
+      if (formattedCardNumber.length === maxLength) {
+         setEdit(false); 
+         setUsername(randomNames[Math.floor(Math.random() * randomNames.length)]);
+       } 
 
-        //needed to setUsername on card number completion
-        if (formattedCardNumber.length <= maxLength) {
-          setUsername(randomName);
-          setFormData((prevFormData) => ({
-            ...prevFormData,
-            [name]: formattedCardNumber,
-          }));
-        }
-       
-      } else if (name === "cvv") {
-        const formattedCvv = value.replace(/[^0-9]/g, "").slice(0, 3); // Allow only digits and limit to 3 characters
+       //needed to setUsername on card number completion
+      if (formattedCardNumber.length <= maxLength) {
         setFormData((prevFormData) => ({
           ...prevFormData,
-          [name]: formattedCvv,
-        }));
-      } else if (name === "password") {
-        const formattedPassword = value
-          .replace(/[^0-9]/g, "")
-          .slice(0, 6); // Allow only digits and limit to 6 characters
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          [name]: formattedPassword,
-        }));
-      } else if (name === "month" || name === "year") {
-        const formattedValue = value
-          .replace(/[^0-9]/g, "")
-          .slice(0, 2); // Allow only digits and limit to 2 characters
-        const numericValue = parseInt(formattedValue, 10); //to convert months to number for easy comparison
-
-        if (
-          name === "month" &&
-          (numericValue < 0 || numericValue > 12)
-        ) {
-          toast.error(
-            <span className="text-textDark xl:text-base lg:text-sm text-xs">
-              Invalid month!
-            </span>,
-            { duration: 2000 }
-          );
-          return;
-        }
-
-        if (
-          name === "year" &&
-          (formattedValue < "00" || formattedValue > "99")
-        ) {
-          toast.error(
-            <span className="text-textDark xl:text-base lg:text-sm text-xs">
-              Invalid year!
-            </span>,
-            { duration: 2000 }
-          );
-          return;
-        }
-
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          [name]: formattedValue,
-        }));
-      } else {
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          [name]: value,
+          [name]: formattedCardNumber,
         }));
       }
-    },
-    []
-  );
+    } else if (name === "cvv") {
+      const formattedCvv = characterNumberSpecifier(value, 3);   // Allow only digits and limit to 3 characters
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: formattedCvv,
+      }));
+    } else if (name === "password") {
+      const formattedPassword = characterNumberSpecifier(value, 6)  // Allow only digits and limit to 6 characters
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: formattedPassword,
+      }));
+    } else if (name === "month" || name === "year") {
+      const formattedValue = characterNumberSpecifier(value, 2);    // Allow only digits and limit to 2 characters
+      const numericValue = parseInt(formattedValue, 10);   //to convert months to number for easy comparison
 
-  //submit function for form data
-  const handleSubmit = useCallback(
-    (event: FormEvent) => {
-      event.preventDefault();
 
-      // Check if any input is empty
-      const isFormEmpty = Object.values(formData).some(
-        (value) => value.trim() === ""
-      );
-
-      if (isFormEmpty) {
-        // Display an error toast
+      if (name === "month" && (numericValue < 0 || numericValue > 12)) {
         toast.error(
           <span className="text-textDark xl:text-base lg:text-sm text-xs">
-            Please fill in all fields!
+            Invalid month!
           </span>,
-          { duration: 4000 }
+          { duration: 2000 }
         );
         return;
       }
 
-      //show submitted data
-      console.log(formData);
+      if (name === "year" && (formattedValue < "00" || formattedValue > "99")) {
+        toast.error(
+          <span className="text-textDark xl:text-base lg:text-sm text-xs">
+            Invalid year!
+          </span>,
+          { duration: 2000 }
+        );
+        return;
+      }
 
-      // Reset the form data to initial values
-      setFormData(initialState);
-      setLastFourDigits("");
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: formattedValue,
+      }));
+    } else {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
+  }, []);
 
-      //notify successful completion
-      toast.success(
-        <span className="text-blackish xl:text-base lg:text-sm text-xs">
-          Payment Successful!
+
+
+//submit function for form data
+  const handleSubmit = useCallback((event: FormEvent) => {
+    event.preventDefault();
+
+     // Check if any input is empty
+    const isFormEmpty = Object.values(formData).some((value) => value.trim() === "");
+
+    if (isFormEmpty) {
+         // Display an error toast
+      toast.error(
+        <span className="text-textDark xl:text-base lg:text-sm text-xs">
+          Please fill in all fields!
         </span>,
         { duration: 4000 }
       );
+      return;
+    }
 
-      //dismiss toast and close form
-      setTimeout(() => {
-        toast.dismiss()
-        setShowForm(false);
-      }, 4000);
-    },
-    [formData]
-  );
+     //show submitted data
+    console.log(formData);
+
+    // Reset the form data to initial values
+    setFormData(initialState);
+    setLastFourDigits("");
+    setUsername("jonathan micheal");
+
+
+    //notify successful completion
+    toast.success(
+      <span className="text-blackish xl:text-base lg:text-sm text-xs">
+        Payment Successful!
+      </span>,
+      { duration: 4000 }
+    );
+
+     //dismiss toast and close form
+    setTimeout(() => {
+      toast.dismiss();
+      setShowForm(false);
+    }, 4000);
+  }, [formData]);
+  
 
   const values = useMemo(
     () => ({

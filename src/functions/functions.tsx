@@ -26,7 +26,7 @@ export const cardNumberFormatter = (value: string) => {
 };
 
 //Needed to be displayed as dummy for card holder
-const randomNames = [
+export const randomNames = [
   "Joy Davidson",
   "John Smith",
   "Emma Johnson",
@@ -36,3 +36,9 @@ const randomNames = [
 ];
 export const randomName =
   randomNames[Math.floor(Math.random() * randomNames.length)]; //return one name from array randomly
+
+
+ // Allow only digits and limit to number of characters specified
+export const characterNumberSpecifier = (value: string, allowableDigits: number) => {
+    return value.replace(/[^0-9]/g, "").slice(0, allowableDigits);   
+}
